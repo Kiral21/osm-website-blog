@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Осм</title>
+    <link rel="icon" href="brain-removebg-preview.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+</head>
+<body>
+
+    <div class="navbar" id="navbar">
+        <header>
+            <img src="brain-removebg-preview.png" alt="Логотип">
+            <h1>Осмысление</h1>
+        </header>
+
+        <nav>
+            <a onclick="showContent('content0', 'article0')">Главная страница</a>
+            <a onclick="showContent('content1', 'article1')">Магия незнания</a>
+            <a onclick="showContent('content2', 'article2')">Здравое общение</a>
+    </nav>
+    </div>
+
+    <section id="content0">
+        <article>
+            <h2>Главная страница</h2>
+                <object type="text/html" data="./Главная страница.html" class="responsive-object"></object>
+        </article>
+    </section>
+
+    <section id="content1" class="hidden">
+        <article>
+            <h2>Магия незнания</h2>
+            <object type="text/html" data="./Магия незнания1.html" class="responsive-object"></object>
+        </article>
+    </section>
+
+    <section id="content2" class="hidden">
+        <article>
+            <h2>Здравое общение</h2>
+            <object type="text/html" data="./Здравое общение1.html" class="responsive-object"></object>
+        </article>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 ИПЖ. Все права защищены.</p>
+    </footer>
+
+    <script>
+        async function showContent(contentId, articlePath) {
+            // Скрыть все секции
+            var sections = document.querySelectorAll('section');
+            sections.forEach(function(section) {
+                section.classList.add('hidden');
+            });
+    
+            // Показать выбранную секцию
+            var selectedSection = document.getElementById(contentId);
+            if (selectedSection) {
+                selectedSection.classList.remove('hidden');
+    
+                // Загрузить содержимое статьи
+                await loadArticleContent(articlePath, contentId);
+            } else {
+                console.error('Секция не найдена:', contentId);
+            }
+        }
+    </script>
+
+</body>
+</html>
